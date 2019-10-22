@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1571487319 source:c:\projetos\analisadorlexico.c\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio.h>
+	"pilha.h"
+	"relop.h"
+	"file.h"
+
+1569452703 source:c:\projetos\analisadorlexico.c\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	"pilha.h"
+
+1569410641 c:\projetos\analisadorlexico.c\pilha.c
+	<stdio.h>
+	<stdlib.h>
+
+1569452597 c:\projetos\analisadorlexico.c\pilha.h
+
+1569452919 source:c:\projetos\analisadorlexico.c\fila.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+
+1569452836 c:\projetos\analisadorlexico.c\fila.h
+
+1570531525 c:\projetos\analisadorlexico.c\relop.h
+
+1570531800 source:c:\projetos\analisadorlexico.c\relop.c
+	<stdio.h>
+	<stdlib.h>
+	"relop.h"
+
+1571487281 source:c:\projetos\analisadorlexico.c\file.c
+	<stdio.h>
+	<stdlib.h>
+	"file.h"
+
+1571487231 c:\projetos\analisadorlexico.c\file.h
+
