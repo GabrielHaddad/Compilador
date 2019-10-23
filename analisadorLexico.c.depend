@@ -39,3 +39,32 @@
 
 1571487231 c:\projetos\analisadorlexico.c\file.h
 
+1569452703 source:c:\projetos\analisadorlexico.c\compilador\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	"pilha.h"
+
+1569452597 c:\projetos\analisadorlexico.c\compilador\pilha.h
+
+1570531800 source:c:\projetos\analisadorlexico.c\compilador\relop.c
+	<stdio.h>
+	<stdlib.h>
+	"relop.h"
+
+1570531525 c:\projetos\analisadorlexico.c\compilador\relop.h
+
+1571831552 source:c:\projetos\analisadorlexico.c\compilador\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdio.h>
+	"pilha.h"
+	"relop.h"
+	"file.h"
+
+1571831571 c:\projetos\analisadorlexico.c\compilador\file.h
+
+1571831479 source:c:\projetos\analisadorlexico.c\compilador\file.c
+	<stdio.h>
+	<stdlib.h>
+	"file.h"
+

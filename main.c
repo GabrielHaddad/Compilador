@@ -8,16 +8,20 @@
 int main()
 {
     FILE *arq;
+    struct Buffer *buffer;
+
+    buffer = createBuffer();
 
     arq = fopen("input.txt", "rt");
 
-    printf("%c", (char)getProxChar(arq));
-    printf("%c", (char)getProxChar(arq));
-    printf("%c", (char)getProxChar(arq));
-    printf("%c", (char)getProxChar(arq));
-    printf("%c", (char)getProxChar(arq));
-    printf("%c", (char)getProxChar(arq));
-    printf("%c", (char)getProxChar(arq));
+    fillBuffer(buffer, arq);
+
+    printf("%c", (char)getProxChar(buffer));
+    printf("%c", (char)getProxChar(buffer));
+    printf("%c", (char)getProxChar(buffer));
+
+    int *token = getProxToken(buffer);
+
 
     fclose(arq);
 
