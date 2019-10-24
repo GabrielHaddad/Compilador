@@ -19,7 +19,14 @@ int fillBuffer(struct Buffer *buffer, FILE *arq) {
         i++;
     }
 
-    return -1;
+    buffer->ini = 0;
+    buffer->prox = 0;
+
+    if(feof(arq)){
+        return -1;
+    }
+
+    return 1;
 }
 
 int getProxChar(struct Buffer *buffer){
@@ -33,12 +40,16 @@ int getProxChar(struct Buffer *buffer){
     return EOF;
 }
 
-int* getProxToken(struct Buffer *buffer) {
+struct Token* getProxToken(struct Buffer *buffer) {
     int size = buffer->prox - buffer->ini;
-    int *token = (int*)malloc(sizeof(int) * size);
+
+    struct Token *token = (struct Token*)malloc(sizeof(struct Token));
+    token->content = (int*)malloc(sizeof(int) * size);
+    token->size = size;
+
     int i = 0;
     while(buffer->ini != buffer->prox){
-        token[i] = buffer->content[buffer->ini];
+        token->content[i] = buffer->content[buffer->ini];
         buffer->ini++;
         i++;
     }

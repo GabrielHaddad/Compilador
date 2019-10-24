@@ -20,8 +20,12 @@ int main()
     printf("%c", (char)getProxChar(buffer));
     printf("%c", (char)getProxChar(buffer));
 
-    int *token = getProxToken(buffer);
+    struct Token *token = getProxToken(buffer);
 
+    int k = 0;
+    for(k = 0; k < token->size; k++){
+        printf("%c", (char)token->content[k]);
+    }
 
     fclose(arq);
 
