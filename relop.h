@@ -1,6 +1,8 @@
 #ifndef RELOP_H_INCLUDED
 #define RELOP_H_INCLUDED
 
+#include "file.h"
+
 #define TOK_OP 0;
 
 #define LE 1;
@@ -10,9 +12,8 @@
 #define GE 5;
 #define GT 6;
 
-char proxChar(char *input, int *posAtual);
-int adHoc (char *input, int *posAtual);
-int move(int **tabela, int row, int col, int state, char caracter);
-int tabelaTransicao(char *input, int *posAtual, int **tabela, int row, int col, int initialState);
-int codificacaoDireta(char *input, int *posAtual, int initialState);
+// int adHoc (char *input, int *posAtual);
+int move(int **tabela, int row, int col, int state, int caracter);
+int tabelaTransicao(FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState);
+// int codificacaoDireta(char *input, int *posAtual, int initialState);
 #endif // RELOP_H_INCLUDED

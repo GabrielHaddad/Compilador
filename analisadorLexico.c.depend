@@ -46,14 +46,16 @@
 
 1569452597 c:\projetos\analisadorlexico.c\compilador\pilha.h
 
-1570531800 source:c:\projetos\analisadorlexico.c\compilador\relop.c
+1571920340 source:c:\projetos\analisadorlexico.c\compilador\relop.c
 	<stdio.h>
 	<stdlib.h>
 	"relop.h"
+	"file.h"
 
-1570531525 c:\projetos\analisadorlexico.c\compilador\relop.h
+1571920307 c:\projetos\analisadorlexico.c\compilador\relop.h
+	"file.h"
 
-1571918147 source:c:\projetos\analisadorlexico.c\compilador\main.c
+1571920483 source:c:\projetos\analisadorlexico.c\compilador\main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdio.h>
@@ -61,9 +63,9 @@
 	"relop.h"
 	"file.h"
 
-1571918149 c:\projetos\analisadorlexico.c\compilador\file.h
+1571919315 c:\projetos\analisadorlexico.c\compilador\file.h
 
-1571918144 source:c:\projetos\analisadorlexico.c\compilador\file.c
+1571919312 source:c:\projetos\analisadorlexico.c\compilador\file.c
 	<stdio.h>
 	<stdlib.h>
 	"file.h"

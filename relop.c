@@ -1,14 +1,63 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "relop.h"
+#include "file.h"
 
-char proxChar(char *input, int *posAtual)
+
+int tabelaTransicao(FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState)
 {
-    char result = input[*posAtual];
-    *posAtual += 1;
-    return result;
+    int stateAtual = initialState;
+    int caracter;
+    if(buffer->prox < BUFFER_SIZE)
+    {
+        caracter = getProxChar(buffer);
+    }
+    else
+    {
+        fillBuffer(buffer, arq);
+        caracter = getProxChar(buffer);
+    }
+
+    while(caracter != EOF && stateAtual != -1)
+    {
+        stateAtual = move(tabela, row, col, stateAtual, caracter);
+        if(stateAtual == -1)
+        {
+            return -1;
+        }
+        if(buffer->prox < BUFFER_SIZE)
+        {
+            caracter = getProxChar(buffer);
+        }
+        else
+        {
+            fillBuffer(buffer, arq);
+            caracter = getProxChar(buffer);
+        }
+    }
+    if(tabela[stateAtual][0] == 'S')
+    {
+        return 1;
+    }
+
+    return -1;
 }
 
+int move(int **tabela, int row, int col, int state, int caracter)
+{
+    int i;
+    for(i=1; i<col; i++)
+    {
+        if(tabela[9][i] == caracter)
+        {
+            return tabela[state][i];
+        }
+    }
+    return tabela[state][col - 1];
+}
+
+
+/*
 int codificacaoDireta(char *input, int *posAtual, int initialState)
 {
     int state = initialState;
@@ -134,38 +183,4 @@ int adHoc (char *input, int *posAtual)
 
     return -1;
 }
-
-int tabelaTransicao(char *input, int *posAtual, int **tabela, int row, int col, int initialState)
-{
-    int stateAtual = initialState;
-    char c = proxChar(input, posAtual);
-
-    while(c != '\0' && stateAtual != -1)
-    {
-        stateAtual = move(tabela, row, col, stateAtual, c);
-        if(stateAtual == -1)
-        {
-            return -1;
-        }
-        c = proxChar(input, posAtual);
-    }
-    if(tabela[stateAtual][0] == 'S')
-    {
-        return 1;
-    }
-
-    return -1;
-}
-
-int move(int **tabela, int row, int col, int state, char caracter)
-{
-    int i;
-    for(i=1; i<col; i++)
-    {
-        if(tabela[9][i] == caracter)
-        {
-            return tabela[state][i];
-        }
-    }
-    return tabela[state][col - 1];
-}
+*/

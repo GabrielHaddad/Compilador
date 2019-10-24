@@ -16,6 +16,7 @@ int main()
 
     fillBuffer(buffer, arq);
 
+    /*
     printf("%c", (char)getProxChar(buffer));
     printf("%c", (char)getProxChar(buffer));
     printf("%c", (char)getProxChar(buffer));
@@ -26,17 +27,8 @@ int main()
     for(k = 0; k < token->size; k++){
         printf("%c", (char)token->content[k]);
     }
-
-    fclose(arq);
-
-    /*
-    char string[10] = "12";
-    int posAtual = 0;
-
-    printf("%d",codificacaoDireta(string, &posAtual, 0));
     */
-    //printf("%d",adHoc(string, &posAtual));
-    /*
+
     int i = 0, j = 0, row = 10, col = 5;
     int **tabela = (int **)malloc(sizeof(int *) * row);
     for(i = 0; i < row; i++){
@@ -108,8 +100,11 @@ int main()
         printf("\n");
     }
 
-    printf("\n %d \n ",tabelaTransicao(string, &posAtual, tabela, row, col, 0));
-    */
+    printf("\n %d \n ",tabelaTransicao(arq, buffer, tabela, row, col, 0));
+
+
+    fclose(arq);
+
     return 0;
 }
 
