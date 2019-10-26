@@ -1,10 +1,10 @@
 # Compiladores
 
-## 1 ( ) - Fazer diagrama para cada Token
+## 1 (X) - Fazer diagrama para cada Token
 
-## 2 ( ) - Juntar os diagramas em um só
+## 2 (X) - Juntar os diagramas em um só
 
-Obs .: 1 e 2 na mão e gerar um arquivo csv. (Adriano)
+Obs .: 1 e 2 na mão e gerar um arquivo csv ( ). (Adriano)
 
 ## 3 ( ) - Converter AFD para AFND
 
