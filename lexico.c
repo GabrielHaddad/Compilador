@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "relop.h"
+#include "lexico.h"
 #include "file.h"
 
 
-int tabelaTransicao(FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState)
+int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState)
 {
     int stateAtual = initialState;
     int caracter;
@@ -37,6 +37,7 @@ int tabelaTransicao(FILE *arq, struct Buffer *buffer, int **tabela, int row, int
     }
     if(tabela[stateAtual][0] == 'S')
     {
+        defineToken(buffer, ha, stateAtual);
         return 1;
     }
 
@@ -54,6 +55,74 @@ int move(int **tabela, int row, int col, int state, int caracter)
         }
     }
     return tabela[state][col - 1];
+}
+
+int ehLetra(int caracter)
+{
+    if((caracter >= 65 && caracter <= 90) || (caracter >= 97 && caracter <= 122))
+    {
+        return 1;
+    }
+    else
+    {
+        return -1;
+    }
+
+}
+
+int ehDigito(int caracter)
+{
+    if((caracter >= 48 && caracter <= 57))
+    {
+        return 1;
+    }
+    else
+    {
+        return -1;
+    }
+
+}
+
+void defineToken(struct Buffer* buffer, struct hash* ha, int state) {
+    struct Token* token;
+    if(state == 2) {
+        if(procuraHash(ha, LE)) {
+            token = criaToken(buffer, RELOP, LE);
+            insereHash(ha, token);
+        }
+    }
+    else if(state == 3) {
+        if(procuraHash(ha, NE)) {
+            token = criaToken(buffer, RELOP, NE);
+            insereHash(ha, token);
+            rollbackHead(buffer);
+        }
+    }
+    else if(state == 4) {
+        if(procuraHash(ha, LT)) {
+            token = criaToken(buffer, RELOP, LT);
+            insereHash(ha, token);
+        }
+    }
+    else if(state == 5) {
+        if(procuraHash(ha, EQ)) {
+            token = criaToken(buffer, RELOP, EQ);
+            insereHash(ha, token);
+        }
+    }
+    else if(state == 7) {
+        if(procuraHash(ha, GE)) {
+            token = criaToken(buffer, RELOP, GE);
+            insereHash(ha, token);
+        }
+    }
+    else if(state == 8) {
+        if(procuraHash(ha, GT)) {
+            token = criaToken(buffer, RELOP, GT);
+            insereHash(ha, token);
+            rollbackHead(buffer);
+        }
+    }
 }
 
 

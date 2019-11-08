@@ -12,14 +12,14 @@ struct Buffer
 
 struct Token
 {
-    int *content;
-    int size;
+    int name;
+    int value;
 };
 
 struct Buffer* createBuffer();
 int fillBuffer(struct Buffer *buffer, FILE *arq);
 int getProxChar(struct Buffer *buffer);
 void rollbackHead(struct Buffer *buffer);
-struct Token* getProxToken(struct Buffer *buffer);
+struct Token* criaToken(struct Buffer *buffer, int name, int value);
 
 #endif // FILE_H_INCLUDED

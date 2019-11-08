@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "pilha.h"
-#include "relop.h"
+#include "lexico.h"
 #include "file.h"
+#include "tabelaHash.h"
 
 int main()
 {
@@ -37,6 +38,7 @@ int main()
             tabela[i][j] = 0;
         }
     }
+
 
     tabela[0][0] = 'N';
     tabela[1][0] = 'N';
@@ -100,8 +102,18 @@ int main()
         printf("\n");
     }
 
-    printf("\n %d \n ",tabelaTransicao(arq, buffer, tabela, row, col, 0));
+    struct hash* ha = criaHash();
 
+    printf("\n %d \n ",tabelaTransicao(ha, arq, buffer, tabela, row, col, 0));
+
+    printf("\n \n");
+
+    int h = 0;
+    for(h = 0; h < HASH_SIZE; h++){
+        if(ha->token[h] != NULL) {
+            printf("Name: %d   Value: %d\n", ha->token[h]->name, ha->token[h]->value);
+        }
+    }
 
     fclose(arq);
 

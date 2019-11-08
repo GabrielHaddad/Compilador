@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "file.h"
+#include "lexico.h"
 
 struct Buffer* createBuffer(){
     struct Buffer *buffer = (struct Buffer*)malloc(sizeof(struct Buffer));
@@ -40,18 +41,14 @@ int getProxChar(struct Buffer *buffer){
     return EOF;
 }
 
-struct Token* getProxToken(struct Buffer *buffer) {
-    int size = buffer->prox - buffer->ini;
+struct Token* criaToken(struct Buffer *buffer, int name, int value) {
 
     struct Token *token = (struct Token*)malloc(sizeof(struct Token));
-    token->content = (int*)malloc(sizeof(int) * size);
-    token->size = size;
+    token->name = name;
+    token->value = value;
 
-    int i = 0;
     while(buffer->ini != buffer->prox){
-        token->content[i] = buffer->content[buffer->ini];
         buffer->ini++;
-        i++;
     }
 
     return token;

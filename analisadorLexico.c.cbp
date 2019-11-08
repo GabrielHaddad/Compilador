@@ -35,6 +35,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="file.h" />
+		<Unit filename="lexico.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lexico.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -42,10 +46,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="pilha.h" />
-		<Unit filename="relop.c">
+		<Unit filename="tabelaHash.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="relop.h" />
+		<Unit filename="tabelaHash.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
