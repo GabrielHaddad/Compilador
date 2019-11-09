@@ -104,7 +104,12 @@ int main()
 
     struct hash* ha = criaHash();
 
-    printf("\n %d \n ",tabelaTransicao(ha, arq, buffer, tabela, row, col, 0));
+    // printf("\n %d \n ",tabelaTransicao(ha, arq, buffer, tabela, row, col, 0));
+
+    int c = tabelaTransicao(ha, arq, buffer, tabela, row, col, 0);
+    while(c != EOF) {
+        c = tabelaTransicao(ha, arq, buffer, tabela, row, col, 0);
+    }
 
     printf("\n \n");
 

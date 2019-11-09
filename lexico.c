@@ -7,15 +7,23 @@
 int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState)
 {
     int stateAtual = initialState;
-    int caracter;
+    int caracter = -1;
     if(buffer->prox < BUFFER_SIZE)
     {
         caracter = getProxChar(buffer);
+        while(caracter == ' ' || caracter == '\n')
+        {
+            caracter = getProxChar(buffer);
+        }
     }
     else
     {
         fillBuffer(buffer, arq);
         caracter = getProxChar(buffer);
+        while(caracter == ' ' || caracter == '\n')
+        {
+            caracter = getProxChar(buffer);
+        }
     }
 
     while(caracter != EOF && stateAtual != -1)
@@ -23,25 +31,36 @@ int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tab
         stateAtual = move(tabela, row, col, stateAtual, caracter);
         if(stateAtual == -1)
         {
-            return -1;
+            // rollbackHead(buffer);
+            return caracter;
         }
+
+        if(tabela[stateAtual][0] == 'S')
+        {
+            defineToken(buffer, ha, stateAtual);
+            return caracter;
+        }
+
         if(buffer->prox < BUFFER_SIZE)
         {
             caracter = getProxChar(buffer);
+            while(caracter == ' ' || caracter == '\n')
+            {
+                caracter = getProxChar(buffer);
+            }
         }
         else
         {
             fillBuffer(buffer, arq);
             caracter = getProxChar(buffer);
+            while(caracter == ' ' || caracter == '\n')
+            {
+                caracter = getProxChar(buffer);
+            }
         }
     }
-    if(tabela[stateAtual][0] == 'S')
-    {
-        defineToken(buffer, ha, stateAtual);
-        return 1;
-    }
 
-    return -1;
+    return caracter;
 }
 
 int move(int **tabela, int row, int col, int state, int caracter)
@@ -83,44 +102,55 @@ int ehDigito(int caracter)
 
 }
 
-void defineToken(struct Buffer* buffer, struct hash* ha, int state) {
+void defineToken(struct Buffer* buffer, struct hash* ha, int state)
+{
     struct Token* token;
-    if(state == 2) {
-        if(procuraHash(ha, LE)) {
+    if(state == 2)
+    {
+        if(procuraHash(ha, LE))
+        {
             token = criaToken(buffer, RELOP, LE);
             insereHash(ha, token);
         }
     }
-    else if(state == 3) {
-        if(procuraHash(ha, NE)) {
+    else if(state == 3)
+    {
+        if(procuraHash(ha, NE))
+        {
             token = criaToken(buffer, RELOP, NE);
             insereHash(ha, token);
-            rollbackHead(buffer);
         }
     }
-    else if(state == 4) {
-        if(procuraHash(ha, LT)) {
+    else if(state == 4)
+    {
+        if(procuraHash(ha, LT))
+        {
             token = criaToken(buffer, RELOP, LT);
             insereHash(ha, token);
         }
     }
-    else if(state == 5) {
-        if(procuraHash(ha, EQ)) {
+    else if(state == 5)
+    {
+        if(procuraHash(ha, EQ))
+        {
             token = criaToken(buffer, RELOP, EQ);
             insereHash(ha, token);
         }
     }
-    else if(state == 7) {
-        if(procuraHash(ha, GE)) {
+    else if(state == 7)
+    {
+        if(procuraHash(ha, GE))
+        {
             token = criaToken(buffer, RELOP, GE);
             insereHash(ha, token);
         }
     }
-    else if(state == 8) {
-        if(procuraHash(ha, GT)) {
+    else if(state == 8)
+    {
+        if(procuraHash(ha, GT))
+        {
             token = criaToken(buffer, RELOP, GT);
             insereHash(ha, token);
-            rollbackHead(buffer);
         }
     }
 }
