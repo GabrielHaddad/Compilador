@@ -55,7 +55,7 @@
 1571920307 c:\projetos\analisadorlexico.c\compilador\relop.h
 	"file.h"
 
-1573314549 source:c:\projetos\analisadorlexico.c\compilador\main.c
+1573383594 source:c:\projetos\analisadorlexico.c\compilador\main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdio.h>
@@ -72,7 +72,7 @@
 	"file.h"
 	"lexico.h"
 
-1573315160 source:c:\projetos\analisadorlexico.c\compilador\lexico.c
+1573384850 source:c:\projetos\analisadorlexico.c\compilador\lexico.c
 	<stdio.h>
 	<stdlib.h>
 	"lexico.h"

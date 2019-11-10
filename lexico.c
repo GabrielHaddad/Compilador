@@ -7,6 +7,7 @@
 int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState)
 {
     int stateAtual = initialState;
+    int oldState = stateAtual;
     int caracter = -1;
     if(buffer->prox < BUFFER_SIZE)
     {
@@ -31,14 +32,12 @@ int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tab
         stateAtual = move(tabela, row, col, stateAtual, caracter);
         if(stateAtual == -1)
         {
-            // rollbackHead(buffer);
-            return caracter;
+            break;
         }
 
         if(tabela[stateAtual][0] == 'S')
         {
-            defineToken(buffer, ha, stateAtual);
-            return caracter;
+            oldState = stateAtual;
         }
 
         if(buffer->prox < BUFFER_SIZE)
@@ -59,6 +58,9 @@ int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tab
             }
         }
     }
+
+    defineToken(buffer, ha, oldState);
+    rollbackHead(buffer);
 
     return caracter;
 }
