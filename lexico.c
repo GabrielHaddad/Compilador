@@ -59,6 +59,10 @@ int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tab
         }
     }
 
+    if(!oldState) {
+        return 0;
+    }
+
     defineToken(buffer, ha, oldState);
     rollbackHead(buffer);
 
@@ -76,32 +80,6 @@ int move(int **tabela, int row, int col, int state, int caracter)
         }
     }
     return tabela[state][col - 1];
-}
-
-int ehLetra(int caracter)
-{
-    if((caracter >= 65 && caracter <= 90) || (caracter >= 97 && caracter <= 122))
-    {
-        return 1;
-    }
-    else
-    {
-        return -1;
-    }
-
-}
-
-int ehDigito(int caracter)
-{
-    if((caracter >= 48 && caracter <= 57))
-    {
-        return 1;
-    }
-    else
-    {
-        return -1;
-    }
-
 }
 
 void defineToken(struct Buffer* buffer, struct hash* ha, int state)

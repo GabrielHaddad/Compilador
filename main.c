@@ -32,9 +32,11 @@ int main()
 
     int i = 0, j = 0, row = 10, col = 5;
     int **tabela = (int **)malloc(sizeof(int *) * row);
-    for(i = 0; i < row; i++){
+    for(i = 0; i < row; i++)
+    {
         tabela[i] = (int *) malloc(sizeof(int) * col);
-        for(j = 0; j < col; j++){
+        for(j = 0; j < col; j++)
+        {
             tabela[i][j] = 0;
         }
     }
@@ -95,8 +97,10 @@ int main()
     tabela[8][4] = -1;
     tabela[9][4] = 'O';
 
-    for(i = 0; i< row; i++){
-        for(j = 0; j < col; j++){
+    for(i = 0; i< row; i++)
+    {
+        for(j = 0; j < col; j++)
+        {
             printf("[%d][%d]: %d ", i,j,tabela[i][j]);
         }
         printf("\n");
@@ -107,18 +111,32 @@ int main()
     // printf("\n %d \n ",tabelaTransicao(ha, arq, buffer, tabela, row, col, 0));
 
     int c = tabelaTransicao(ha, arq, buffer, tabela, row, col, 0);
-    while(c != EOF) {
+    while(c != EOF && c != 0)
+    {
         c = tabelaTransicao(ha, arq, buffer, tabela, row, col, 0);
     }
+
 
     printf("\n \n");
 
     int h = 0;
-    for(h = 0; h < HASH_SIZE; h++){
-        if(ha->token[h] != NULL) {
+    for(h = 0; h < HASH_SIZE; h++)
+    {
+        if(ha->token[h] != NULL)
+        {
             printf("Name: %d   Value: %d\n", ha->token[h]->name, ha->token[h]->value);
         }
     }
+
+    if(c == 0)
+    {
+        printf("\nErro no reconhecimento do token\n");
+    }
+    else
+    {
+        printf("\nFinal do Arquivo\n");
+    }
+
 
     fclose(arq);
 
