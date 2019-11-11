@@ -11,11 +11,13 @@ int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tab
     int caracter = -1;
     if(buffer->prox < BUFFER_SIZE)
     {
+
         caracter = getProxChar(buffer);
         while(caracter == ' ' || caracter == '\n')
         {
             caracter = getProxChar(buffer);
         }
+
     }
     else
     {
@@ -25,6 +27,7 @@ int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tab
         {
             caracter = getProxChar(buffer);
         }
+
     }
 
     while(caracter != EOF && stateAtual != -1)
@@ -43,28 +46,23 @@ int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tab
         if(buffer->prox < BUFFER_SIZE)
         {
             caracter = getProxChar(buffer);
-            while(caracter == ' ' || caracter == '\n')
-            {
-                caracter = getProxChar(buffer);
-            }
+
         }
         else
         {
             fillBuffer(buffer, arq);
             caracter = getProxChar(buffer);
-            while(caracter == ' ' || caracter == '\n')
-            {
-                caracter = getProxChar(buffer);
-            }
         }
     }
 
-    if(!oldState) {
+    if(!oldState)
+    {
         return 0;
     }
 
-    defineToken(buffer, ha, oldState);
+    struct Token *token = defineToken(buffer, ha, oldState);
     rollbackHead(buffer);
+    printf("\n <%d,%d> \n", token->name, token->value);
 
     return caracter;
 }
@@ -82,9 +80,9 @@ int move(int **tabela, int row, int col, int state, int caracter)
     return tabela[state][col - 1];
 }
 
-void defineToken(struct Buffer* buffer, struct hash* ha, int state)
+struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state)
 {
-    struct Token* token;
+    struct Token* token = NULL;
     if(state == 2)
     {
         if(procuraHash(ha, LE))
@@ -133,6 +131,8 @@ void defineToken(struct Buffer* buffer, struct hash* ha, int state)
             insereHash(ha, token);
         }
     }
+
+    return token;
 }
 
 
