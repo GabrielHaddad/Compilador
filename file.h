@@ -10,10 +10,17 @@ struct Buffer
     int prox;
 };
 
+struct Content
+{
+    int value;
+    int col;
+    int line;
+};
+
 struct Token
 {
     int name;
-    int value;
+    struct Content content;
 };
 
 struct Buffer* createBuffer();
@@ -21,5 +28,7 @@ int fillBuffer(struct Buffer *buffer, FILE *arq);
 int getProxChar(struct Buffer *buffer);
 void rollbackHead(struct Buffer *buffer);
 struct Token* criaToken(struct Buffer *buffer, int name, int value);
+int getActualLine();
+int getActualColumn();
 
 #endif // FILE_H_INCLUDED

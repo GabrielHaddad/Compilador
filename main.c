@@ -124,7 +124,8 @@ int main()
     {
         if(ha->token[h] != NULL)
         {
-            printf("Name: %d   Value: %d\n", ha->token[h]->name, ha->token[h]->value);
+            printf("Name: %d Value: %d  Line: %d  Column: %d\n", ha->token[h]->name, ha->token[h]->content.value,
+                   ha->token[h]->content.line, ha->token[h]->content.col);
         }
     }
 

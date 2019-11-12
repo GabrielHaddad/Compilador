@@ -3,7 +3,6 @@
 #include "lexico.h"
 #include "file.h"
 
-
 int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState)
 {
     int stateAtual = initialState;
@@ -62,7 +61,7 @@ int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tab
 
     struct Token *token = defineToken(buffer, ha, oldState);
     rollbackHead(buffer);
-    printf("\n <%d,%d> \n", token->name, token->value);
+    printf("\n <%d,%d> \n", token->name, token->content.value);
 
     return caracter;
 }
@@ -85,51 +84,57 @@ struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state)
     struct Token* token = NULL;
     if(state == 2)
     {
-        if(procuraHash(ha, LE))
+        if(procuraHash(ha, LE) == -1)
         {
             token = criaToken(buffer, RELOP, LE);
             insereHash(ha, token);
         }
+        return ha->token[LE];
     }
     else if(state == 3)
     {
-        if(procuraHash(ha, NE))
+        if(procuraHash(ha, NE) == -1)
         {
             token = criaToken(buffer, RELOP, NE);
             insereHash(ha, token);
         }
+        return ha->token[NE];
     }
     else if(state == 4)
     {
-        if(procuraHash(ha, LT))
+        if(procuraHash(ha, LT) == -1)
         {
             token = criaToken(buffer, RELOP, LT);
             insereHash(ha, token);
         }
+        return ha->token[LT];
     }
     else if(state == 5)
     {
-        if(procuraHash(ha, EQ))
+        if(procuraHash(ha, EQ) == -1)
         {
             token = criaToken(buffer, RELOP, EQ);
             insereHash(ha, token);
         }
+        return ha->token[EQ];
     }
     else if(state == 7)
     {
-        if(procuraHash(ha, GE))
+        if(procuraHash(ha, GE) == -1)
         {
             token = criaToken(buffer, RELOP, GE);
             insereHash(ha, token);
         }
+        return ha->token[GE];
     }
     else if(state == 8)
     {
-        if(procuraHash(ha, GT))
+        if(procuraHash(ha, GT) == -1)
         {
             token = criaToken(buffer, RELOP, GT);
             insereHash(ha, token);
         }
+        return ha->token[GT];
     }
 
     return token;

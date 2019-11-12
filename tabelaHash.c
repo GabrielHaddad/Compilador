@@ -21,7 +21,7 @@ int hashCode(int key) {
 }
 
 int insereHash(struct hash* ha, struct Token* token) {
-   int hashIndex = hashCode(token->value);
+   int hashIndex = hashCode(token->content.value);
 
    ha->token[hashIndex] = token;
 

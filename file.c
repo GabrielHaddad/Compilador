@@ -3,6 +3,9 @@
 #include "file.h"
 #include "lexico.h"
 
+int col = 0;
+int line = 0;
+
 struct Buffer* createBuffer(){
     struct Buffer *buffer = (struct Buffer*)malloc(sizeof(struct Buffer));
     buffer->content = (int*)malloc(sizeof(int) * BUFFER_SIZE);
@@ -35,6 +38,13 @@ int getProxChar(struct Buffer *buffer){
         int result = buffer->content[buffer->prox];
         buffer->prox++;
 
+        col++;
+
+        if(result == '\n'){
+            line++;
+            col = 0;
+        }
+
         return result;
     }
 
@@ -45,7 +55,9 @@ struct Token* criaToken(struct Buffer *buffer, int name, int value) {
 
     struct Token *token = (struct Token*)malloc(sizeof(struct Token));
     token->name = name;
-    token->value = value;
+    token->content.value = value;
+    token->content.line = getActualLine();
+    token->content.col = getActualColumn();
 
     while(buffer->ini != buffer->prox){
         buffer->ini++;
@@ -58,3 +70,10 @@ void rollbackHead(struct Buffer *buffer){
     buffer->prox--;
 }
 
+int getActualLine() {
+    return line;
+}
+
+int getActualColumn() {
+    return col;
+}
