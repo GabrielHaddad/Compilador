@@ -110,9 +110,12 @@ int main()
 
     // printf("\n %d \n ",tabelaTransicao(ha, arq, buffer, tabela, row, col, 0));
 
+    printf("\n\n");
     struct Token *token = tabelaTransicao(ha, arq, buffer, tabela, row, col, 0);
     while(token != NULL && token->name != -1)
     {
+        printf("Name: %d Value: %d  Line: %d  Column: %d\n", token->name, token->content.value,
+                   token->content.line, token->content.col);
         token = tabelaTransicao(ha, arq, buffer, tabela, row, col, 0);
     }
 
