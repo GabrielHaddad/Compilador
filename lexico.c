@@ -3,8 +3,9 @@
 #include "lexico.h"
 #include "file.h"
 
-int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState)
+struct Token *tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState)
 {
+    struct Token *token = NULL;
     int stateAtual = initialState;
     int oldState = stateAtual;
     int caracter = -1;
@@ -54,16 +55,23 @@ int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tab
         }
     }
 
-    if(!oldState)
+    if(oldState == 0)
     {
-        return 0;
+        if(stateAtual == 0)
+        {
+            token = NULL;
+        }
+        else
+        {
+            token = criaToken(buffer, -1, -1);
+        }
+        return token;
     }
 
-    struct Token *token = defineToken(buffer, ha, oldState);
+    token = defineToken(buffer, ha, oldState);
     rollbackHead(buffer);
-    printf("\n <%d,%d> \n", token->name, token->content.value);
 
-    return caracter;
+    return token;
 }
 
 int move(int **tabela, int row, int col, int state, int caracter)

@@ -55,7 +55,7 @@
 1571920307 c:\projetos\analisadorlexico.c\compilador\relop.h
 	"file.h"
 
-1573515706 source:c:\projetos\analisadorlexico.c\compilador\main.c
+1573563144 source:c:\projetos\analisadorlexico.c\compilador\main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdio.h>
@@ -66,19 +66,19 @@
 
 1573515580 c:\projetos\analisadorlexico.c\compilador\file.h
 
-1573516641 source:c:\projetos\analisadorlexico.c\compilador\file.c
+1573563439 source:c:\projetos\analisadorlexico.c\compilador\file.c
 	<stdio.h>
 	<stdlib.h>
 	"file.h"
 	"lexico.h"
 
-1573517083 source:c:\projetos\analisadorlexico.c\compilador\lexico.c
+1573564167 source:c:\projetos\analisadorlexico.c\compilador\lexico.c
 	<stdio.h>
 	<stdlib.h>
 	"lexico.h"
 	"file.h"
 
-1573507688 c:\projetos\analisadorlexico.c\compilador\lexico.h
+1573562675 c:\projetos\analisadorlexico.c\compilador\lexico.h
 	"file.h"
 	"tabelaHash.h"
 

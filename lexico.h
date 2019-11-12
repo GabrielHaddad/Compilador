@@ -15,9 +15,7 @@
 
 // int adHoc (char *input, int *posAtual);
 int move(int **tabela, int row, int col, int state, int caracter);
-int tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState);
-int ehLetra(int caracter);
-int ehDigito(int caracter);
+struct Token *tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState);
 struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state);
 // int codificacaoDireta(char *input, int *posAtual, int initialState);
 #endif // RELOP_H_INCLUDED

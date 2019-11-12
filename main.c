@@ -110,10 +110,10 @@ int main()
 
     // printf("\n %d \n ",tabelaTransicao(ha, arq, buffer, tabela, row, col, 0));
 
-    int c = tabelaTransicao(ha, arq, buffer, tabela, row, col, 0);
-    while(c != EOF && c != 0)
+    struct Token *token = tabelaTransicao(ha, arq, buffer, tabela, row, col, 0);
+    while(token != NULL && token->name != -1)
     {
-        c = tabelaTransicao(ha, arq, buffer, tabela, row, col, 0);
+        token = tabelaTransicao(ha, arq, buffer, tabela, row, col, 0);
     }
 
 
@@ -129,13 +129,11 @@ int main()
         }
     }
 
-    if(c == 0)
-    {
-        printf("\nErro no reconhecimento do token\n");
-    }
-    else
+    if (token == NULL)
     {
         printf("\nFinal do Arquivo\n");
+    }else if(token->content.value == -1){
+        printf("\nErro ao reconhecer o token\n");
     }
 
 

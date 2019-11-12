@@ -3,8 +3,8 @@
 #include "file.h"
 #include "lexico.h"
 
-int col = 0;
-int line = 0;
+int col = 1;
+int line = 1;
 
 struct Buffer* createBuffer(){
     struct Buffer *buffer = (struct Buffer*)malloc(sizeof(struct Buffer));
@@ -68,6 +68,7 @@ struct Token* criaToken(struct Buffer *buffer, int name, int value) {
 
 void rollbackHead(struct Buffer *buffer){
     buffer->prox--;
+    col--;
 }
 
 int getActualLine() {
