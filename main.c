@@ -8,6 +8,45 @@
 
 int main()
 {
+    FILE *newTable;
+    newTable = fopen("afdTabelaMerged.txt", "rt");
+
+    int i = 0, j = 0, row = 69, col = 51;
+    char c[1024];
+    int **novaTabela = (int **)malloc(sizeof(int *) * row);
+    for(i = 0; i < row; i++)
+    {
+        novaTabela[i] = (int *) malloc(sizeof(int) * col);
+        for(j = 0; j < col; j++)
+        {
+            if(fscanf(newTable, " %1023s", c) == 1)
+            {
+                if(atoi(c) == 0)
+                {
+                    //printf(" %d ", c[0]);
+                    novaTabela[i][j] = c[0];
+                }
+                else
+                {
+                    //printf(" %d ", atoi(c));
+                    novaTabela[i][j] = atoi(c);
+                }
+            }
+        }
+    }
+
+    for(i = 0; i< row; i++)
+    {
+        for(j = 0; j < col; j++)
+        {
+            printf("[%d][%d]: %d ", i,j,novaTabela[i][j]);
+        }
+        printf("\n");
+    }
+
+    fclose(newTable);
+
+    /*
     FILE *arq;
     struct Buffer *buffer;
 
@@ -16,7 +55,7 @@ int main()
     arq = fopen("input.txt", "rt");
 
     fillBuffer(buffer, arq);
-
+    */
     /*
     printf("%c", (char)getProxChar(buffer));
     printf("%c", (char)getProxChar(buffer));
@@ -30,6 +69,7 @@ int main()
     }
     */
 
+    /*
     int i = 0, j = 0, row = 10, col = 5;
     int **tabela = (int **)malloc(sizeof(int *) * row);
     for(i = 0; i < row; i++)
@@ -138,9 +178,9 @@ int main()
     }else if(token->content.value == -1){
         printf("\nErro ao reconhecer o token\n");
     }
+    */
 
-
-    fclose(arq);
+    //fclose(arq);
 
     return 0;
 }

@@ -55,7 +55,7 @@
 1571920307 c:\projetos\analisadorlexico.c\compilador\relop.h
 	"file.h"
 
-1573564883 source:c:\projetos\analisadorlexico.c\compilador\main.c
+1573687013 source:c:\projetos\analisadorlexico.c\compilador\main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdio.h>
@@ -89,4 +89,12 @@
 
 1573218116 c:\projetos\analisadorlexico.c\compilador\tabelahash.h
 	"file.h"
+
+1573684520 source:c:\projetos\analisadorlexico.c\compilador\trim.c
+	<stdio.h>
+	<stdlib.h>
+
+1573684520 c:\projetos\analisadorlexico.c\compilador\trim.c
+	<stdio.h>
+	<stdlib.h>
 
