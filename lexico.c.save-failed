@@ -30,12 +30,6 @@ struct Token *tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer,
 
     }
 
-    if(caracter == EOF)
-    {
-        token = NULL;
-        return token;
-    }
-
     while(caracter != EOF && stateAtual != -1)
     {
         stateAtual = move(tabela, row, col, stateAtual, caracter);
@@ -61,7 +55,21 @@ struct Token *tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer,
         }
     }
 
+    if(oldState == 0)
+    {
+        if(stateAtual == 0)
+        {
+            token = NULL;
+        }
+        else
+        {
+            token = criaToken(buffer, -1, -1);
+        }
+        return token;
+    }
+
     token = defineToken(buffer, ha, oldState);
+    rollbackHead(buffer);
 
     return token;
 }
@@ -144,9 +152,9 @@ struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state)
         //if(procuraHash(ha, GT) == -1)
         //{
         token = criaToken(buffer, RELOP, GT);
-        //insereHash(ha, token);
+        insereHash(ha, token);
         //}
-        return token;
+        return ha->token[GT];
     }
 
     //opt
@@ -155,9 +163,9 @@ struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state)
         //if(procuraHash(ha, 7) == -1)
         //{
         token = criaToken(buffer, RELOP, 7);
-        //insereHash(ha, token);
+        insereHash(ha, token);
         //}
-        return token;
+        return ha->token[7];
     }
 
     //identificador
@@ -166,9 +174,9 @@ struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state)
         //if(procuraHash(ha, 8) == -1)
         //{
         token = criaToken(buffer, RELOP, 8);
-        //insereHash(ha, token);
+        insereHash(ha, token);
         //}
-        return token;
+        return ha->token[8];
     }
 
     //constante
@@ -177,9 +185,9 @@ struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state)
         //if(procuraHash(ha, 9) == -1)
         //{
         token = criaToken(buffer, RELOP, 9);
-        //insereHash(ha, token);
+        insereHash(ha, token);
         //}
-        return token;
+        return ha->token[9];
     }
 
     //pontuação
@@ -188,20 +196,20 @@ struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state)
         if(procuraHash(ha, 9) == -1)
         {
             token = criaToken(buffer, RELOP, 9);
-            //insereHash(ha, token);
+            insereHash(ha, token);
         }
-        return token;
+        return ha->token[9];
     }
 
     //rwd
-    if(state == 37 || state == 41 || state == 43 || state == 48 || state == 49 || state == 51 || state == 52 || state == 59 || state == 60 || state == 65 || state == 66  )
+    if(state == 37 || state == 41 || state == 43 || state == 48 || state == 49 || state == 51 || state == 52 || state == 59 || state == 60 || state == 65 || state == 6   )
     {
         //if(procuraHash(ha, 10) == -1)
         //{
         token = criaToken(buffer, RELOP, 10);
-        //insereHash(ha, token);
+        insereHash(ha, token);
         //}
-        return token;
+        return ha->token[10];
     }
 
 

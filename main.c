@@ -34,7 +34,7 @@ int main()
             }
         }
     }
-
+    /*
     for(i = 0; i< row; i++)
     {
         for(j = 0; j < col; j++)
@@ -43,10 +43,10 @@ int main()
         }
         printf("\n");
     }
-
+    */
     fclose(newTable);
 
-    /*
+
     FILE *arq;
     struct Buffer *buffer;
 
@@ -55,7 +55,7 @@ int main()
     arq = fopen("input.txt", "rt");
 
     fillBuffer(buffer, arq);
-    */
+
     /*
     printf("%c", (char)getProxChar(buffer));
     printf("%c", (char)getProxChar(buffer));
@@ -70,7 +70,7 @@ int main()
     */
 
     /*
-    int i = 0, j = 0, row = 10, col = 5;
+    i = 0, j = 0, row = 10, col = 5;
     int **tabela = (int **)malloc(sizeof(int *) * row);
     for(i = 0; i < row; i++)
     {
@@ -145,18 +145,18 @@ int main()
         }
         printf("\n");
     }
-
+    */
     struct hash* ha = criaHash();
 
     // printf("\n %d \n ",tabelaTransicao(ha, arq, buffer, tabela, row, col, 0));
 
     printf("\n\n");
-    struct Token *token = tabelaTransicao(ha, arq, buffer, tabela, row, col, 0);
+    struct Token *token = tabelaTransicao(ha, arq, buffer, novaTabela, row, col, 0);
     while(token != NULL && token->name != -1)
     {
         printf("Name: %d Value: %d  Line: %d  Column: %d\n", token->name, token->content.value,
                    token->content.line, token->content.col);
-        token = tabelaTransicao(ha, arq, buffer, tabela, row, col, 0);
+        token = tabelaTransicao(ha, arq, buffer, novaTabela, row, col, 0);
     }
 
 
@@ -178,9 +178,9 @@ int main()
     }else if(token->content.value == -1){
         printf("\nErro ao reconhecer o token\n");
     }
-    */
 
-    //fclose(arq);
+
+    fclose(arq);
 
     return 0;
 }
