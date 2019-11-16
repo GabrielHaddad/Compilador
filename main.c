@@ -175,6 +175,9 @@ int main()
     if (token == NULL)
     {
         printf("\nFinal do Arquivo\n");
+        token = criaToken(buffer, -2, -2);
+        printf("Name: %d Value: %d  Line: %d  Column: %d\n", token->name, token->content.value,
+                   token->content.line, token->content.col);
     }else if(token->content.value == -1){
         printf("\nErro ao reconhecer o token\n");
     }

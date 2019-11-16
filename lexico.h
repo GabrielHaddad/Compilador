@@ -5,17 +5,13 @@
 #include "tabelaHash.h"
 
 #define RELOP 0
+#define OPT 1
+#define ID 2
+#define CONST 3
+#define PNT 4
+#define RWD 5
 
-#define LE 1
-#define NE 2
-#define LT 3
-#define EQ 4
-#define GE 5
-#define GT 6
-
-// int adHoc (char *input, int *posAtual);
 int move(int **tabela, int row, int col, int state, int caracter);
 struct Token *tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState);
 struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state);
-// int codificacaoDireta(char *input, int *posAtual, int initialState);
 #endif // RELOP_H_INCLUDED

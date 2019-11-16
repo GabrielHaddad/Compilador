@@ -82,257 +82,61 @@ int move(int **tabela, int row, int col, int state, int caracter)
 struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state)
 {
     struct Token* token = NULL;
-    /*
-    if(state == 2)
-    {
-        if(procuraHash(ha, LE) == -1)
-        {
-            token = criaToken(buffer, RELOP, LE);
-            insereHash(ha, token);
-        }
-        return ha->token[LE];
-    }
-    else if(state == 3)
-    {
-        if(procuraHash(ha, NE) == -1)
-        {
-            token = criaToken(buffer, RELOP, NE);
-            insereHash(ha, token);
-        }
-        return ha->token[NE];
-    }
-    else if(state == 4)
-    {
-        if(procuraHash(ha, LT) == -1)
-        {
-            token = criaToken(buffer, RELOP, LT);
-            insereHash(ha, token);
-        }
-        return ha->token[LT];
-    }
-    else if(state == 5)
-    {
-        if(procuraHash(ha, EQ) == -1)
-        {
-            token = criaToken(buffer, RELOP, EQ);
-            insereHash(ha, token);
-        }
-        return ha->token[EQ];
-    }
-    else if(state == 7)
-    {
-        if(procuraHash(ha, GE) == -1)
-        {
-            token = criaToken(buffer, RELOP, GE);
-            insereHash(ha, token);
-        }
-        return ha->token[GE];
-    }
-    else if(state == 8)
-    {
-        if(procuraHash(ha, GT) == -1)
-        {
-            token = criaToken(buffer, RELOP, GT);
-            insereHash(ha, token);
-        }
-        return ha->token[GT];
-    }
-    */
+
     //relop
     if(state == 1 || state == 18 || state == 25 || state == 34)
     {
-        //if(procuraHash(ha, GT) == -1)
-        //{
-        token = criaToken(buffer, RELOP, GT);
-        //insereHash(ha, token);
-        //}
+        token = criaToken(buffer, RELOP, 0);
+
         return token;
     }
 
     //opt
     if(state == 6 || state == 8 || state == 14 || state == 16 || state == 17)
     {
-        //if(procuraHash(ha, 7) == -1)
-        //{
-        token = criaToken(buffer, RELOP, 7);
-        //insereHash(ha, token);
-        //}
+        token = criaToken(buffer, OPT, 1);
+
         return token;
     }
 
     //identificador
     if(state == 4)
     {
-        //if(procuraHash(ha, 8) == -1)
-        //{
-        token = criaToken(buffer, RELOP, 8);
-        //insereHash(ha, token);
-        //}
-        return token;
+        if(procuraHash(ha, 2) == -1)
+        {
+            token = criaToken(buffer, ID, 2);
+            insereHash(ha, token);
+
+            return token;
+        }
+
+        return ha->token[2];
     }
 
     //constante
     if(state == 11 || state == 36 || state == 67)
     {
-        //if(procuraHash(ha, 9) == -1)
-        //{
-        token = criaToken(buffer, RELOP, 9);
-        //insereHash(ha, token);
-        //}
+        token = criaToken(buffer, CONST, 2);
+
         return token;
     }
 
     //pontuação
     if(state == 12 || state == 13 || state == 19 || state == 21 || state == 23)
     {
-        if(procuraHash(ha, 9) == -1)
-        {
-            token = criaToken(buffer, RELOP, 9);
-            //insereHash(ha, token);
-        }
+        token = criaToken(buffer, PNT, 3);
+
         return token;
     }
 
     //rwd
     if(state == 37 || state == 41 || state == 43 || state == 48 || state == 49 || state == 51 || state == 52 || state == 59 || state == 60 || state == 65 || state == 66  )
     {
-        //if(procuraHash(ha, 10) == -1)
-        //{
-        token = criaToken(buffer, RELOP, 10);
-        //insereHash(ha, token);
-        //}
+        token = criaToken(buffer, RWD, 4);
+
         return token;
     }
 
-
+    token = criaToken(buffer, -1, -1);
     return token;
 }
-
-
-/*
-int codificacaoDireta(char *input, int *posAtual, int initialState)
-{
-    int state = initialState;
-    while(state == 0 || state == 1 || state == 6)
-    {
-        char c = proxChar(input, posAtual);
-
-        switch (state)
-        {
-        case 0:
-            if(c == '<')
-            {
-                state = 1;
-                break;
-            }
-            else if(c == '=')
-            {
-                state = 5;
-                break;
-            }
-            else if(c == '>')
-            {
-                state = 6;
-                break;
-            }
-            else
-            {
-                state = -1;
-                break;
-            }
-
-        case 1:
-            if(c == '<')
-            {
-                state = -1;
-                break;
-            }
-            else if(c == '=')
-            {
-                state = 2;
-                break;
-            }
-            else if(c == '>')
-            {
-                state = 3;
-                break;
-            }
-            else
-            {
-                state = 4;
-                break;
-            }
-
-        case 6:
-            if(c == '<')
-            {
-                state = -1;
-                break;
-            }
-            else if(c == '=')
-            {
-                state = 7;
-                break;
-            }
-            else if(c == '>')
-            {
-                state = -1;
-                break;
-            }
-            else
-            {
-                state = 8;
-                break;
-            }
-        }
-    }
-
-    if(state == 2 || state == 3  || state == 4 || state == 5 || state == 7 || state == 8)
-    {
-        return 1;
-    }
-    else
-    {
-        return -1;
-    }
-}
-
-int adHoc (char *input, int *posAtual)
-{
-    char c = proxChar(input, posAtual);
-    if(c == '<')
-    {
-        c = proxChar(input, posAtual);
-        if(c == '=')
-        {
-            return LE;
-        }
-        if(c == '>')
-        {
-            return NE;
-        }
-        else
-        {
-            return LT;
-        }
-    }
-    else if(c == '=')
-    {
-        return EQ;
-    }
-    else if(c == '>')
-    {
-        c = proxChar(input, posAtual);
-        if(c == '=')
-        {
-            return GE;
-        }
-        else
-        {
-            return GT
-        }
-    }
-
-    return -1;
-}
-*/
