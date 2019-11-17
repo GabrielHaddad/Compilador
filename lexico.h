@@ -13,5 +13,5 @@
 
 int move(int **tabela, int row, int col, int state, int caracter);
 struct Token *tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer, int **tabela, int row, int col, int initialState);
-struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state);
+struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state, int caracter);
 #endif // RELOP_H_INCLUDED

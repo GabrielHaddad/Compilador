@@ -72,13 +72,13 @@
 	"file.h"
 	"lexico.h"
 
-1573929106 source:c:\projetos\analisadorlexico.c\compilador\lexico.c
+1574013185 source:c:\projetos\analisadorlexico.c\compilador\lexico.c
 	<stdio.h>
 	<stdlib.h>
 	"lexico.h"
 	"file.h"
 
-1573929036 c:\projetos\analisadorlexico.c\compilador\lexico.h
+1574013135 c:\projetos\analisadorlexico.c\compilador\lexico.h
 	"file.h"
 	"tabelaHash.h"
 

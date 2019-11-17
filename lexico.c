@@ -8,6 +8,7 @@ struct Token *tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer,
     struct Token *token = NULL;
     int stateAtual = initialState;
     int oldState = stateAtual;
+    int oldCaracter = -1;
     int caracter = -1;
     if(buffer->prox < BUFFER_SIZE)
     {
@@ -47,6 +48,7 @@ struct Token *tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer,
         if(tabela[stateAtual][0] == 'S')
         {
             oldState = stateAtual;
+            oldCaracter = caracter;
         }
 
         if(buffer->prox < BUFFER_SIZE)
@@ -61,7 +63,7 @@ struct Token *tabelaTransicao(struct hash* ha, FILE *arq, struct Buffer *buffer,
         }
     }
 
-    token = defineToken(buffer, ha, oldState);
+    token = defineToken(buffer, ha, oldState, oldCaracter);
 
     return token;
 }
@@ -79,7 +81,7 @@ int move(int **tabela, int row, int col, int state, int caracter)
     return -1;
 }
 
-struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state)
+struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state, int caracter)
 {
     struct Token* token = NULL;
 
@@ -102,15 +104,15 @@ struct Token *defineToken(struct Buffer* buffer, struct hash* ha, int state)
     //identificador
     if(state == 4)
     {
-        if(procuraHash(ha, 2) == -1)
+        if(procuraHash(ha, caracter) == -1)
         {
-            token = criaToken(buffer, ID, 2);
+            token = criaToken(buffer, ID, caracter);
             insereHash(ha, token);
 
             return token;
         }
 
-        return ha->token[2];
+        return ha->token[caracter];
     }
 
     //constante
